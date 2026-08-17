@@ -1,6 +1,8 @@
 html {
     background-color: rgb(214, 214, 214);
     padding: 0 2vw;
+    font-size: clamp(2vw, 2vh, 5vw);
+    scrollbar-width: none;
 }
 
 ul, li {
