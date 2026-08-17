@@ -8,6 +8,7 @@ function time() {
     currTimeH = date.getHours();
     currTimeM = date.getMinutes();
     console.log("refreshed")
+    subjProg();
 } setInterval(time, 60000);
 
 let startTimesH = [
