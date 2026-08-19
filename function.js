@@ -82,6 +82,7 @@ let days = [
 ]
 
 let day;
+let dayRefr;
 function viewSched(view) {
     switch(view) {
         case 0:
@@ -118,28 +119,28 @@ console.log(day);
 
 document.querySelectorAll(".daysSelect *").forEach((element, index) => {
     element.addEventListener("click", () => {
-        viewSched(index);
+        console.log(index)
         console.log("clicked");
         console.log(day);
-        showSched();
+        showSched(index);
     })
 })
 
-function showSched() {
+function showSched(ind) {
     if (document.querySelector(".daysSelect .active") !== null) {
         document.querySelector(".daysSelect .active").classList.remove("active")
     }
 
-    document.querySelector(`.daysSelect .${day}`).classList.add("active");
+    document.querySelector(`.daysSelect .${days[ind]}`).classList.add("active");
 
-    document.querySelectorAll(`.sched:not(.${day})`).forEach((element) => {
+    document.querySelectorAll(`.sched:not(.${days[ind]})`).forEach((element) => {
         element.style.display = "none"
     })
 
-    document.querySelectorAll(`.sched.${day}`).forEach((element) => {
+    document.querySelectorAll(`.sched.${days[ind]}`).forEach((element) => {
         element.style.display = "block"
     })
-} showSched()
+} showSched(days.indexOf(day))
 
 document.querySelectorAll('h4').forEach((element, index) => {
     element.innerText = `${startTimesH[index]}:${startTimesM[index]} - ${endTimesH[index]}:${endTimesM[index]}`
@@ -149,7 +150,6 @@ document.querySelectorAll('h4').forEach((element, index) => {
 
 function subjProg() {
     let subjects = document.querySelectorAll('.subj');
-    console.log(day)
 
     subjects.forEach((element, i) => {
         let tempStr = element.classList[0];
@@ -160,7 +160,6 @@ function subjProg() {
 
         let perc = (subjTimer - subjStart) / (subjEnd - subjStart) * 100
 
-        //console.log(tempStr, subjStart/60, subjEnd/60, perc);
         let parentsDay = element.parentElement.parentElement.classList[0];
 
         if(parentsDay == day) {
@@ -170,9 +169,9 @@ function subjProg() {
             white ${perc}%,
             white 100%
             )`
+            console.log('changed')
         } else if (days.indexOf(parentsDay) < days.indexOf(day)) {
             element.querySelector('.right').style.backgroundColor = `var(--${tempStr}BG)`
-            console.log(tempStr)
         }
 
 
