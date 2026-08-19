@@ -9,7 +9,7 @@ function time() {
     currTimeM = date.getMinutes();
     console.log("refreshed")
     subjProg();
-} setInterval(time, 60000);
+} setInterval(time, 10000);
 
 let startTimesH = [
     //sun
